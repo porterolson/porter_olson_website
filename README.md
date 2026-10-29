@@ -1,6 +1,6 @@
 # Porter Olson — academic portfolio
 
-A static academic website built with Astro 7, Tailwind CSS 4, and TypeScript. Includes Home, About, Research, Publications, Experience (research, teaching, and service), CV, Contact, and a custom 404 page.
+A static academic website built with Astro 7, Tailwind CSS 4, and TypeScript. Includes Home, About, Research, Papers, Experience (research, teaching, and service), CV, Contact, and a custom 404 page.
 
 ## Run locally
 
@@ -42,6 +42,8 @@ The Astro config already uses `site: 'https://porterolson.github.io'` and `base:
 
 ## Your own domain
 
+Preferred domain: **porterolson.com**. A registry check on October 29, 2026 found no registration; availability must be confirmed by the registrar at purchase. Purchase is still pending. Keep the current GitHub Pages configuration until the domain is owned, then follow the steps below using `porterolson.com` in place of `example.com`.
+
 GitHub provides the default `github.io` address and hosting. Register your own domain separately with a domain registrar, then connect it to Pages. The following uses `example.com` as a placeholder, not a domain already owned or registered.
 
 1. Register a domain you want to keep for your academic career.
@@ -81,4 +83,4 @@ Official references (checked October 29, 2026):
 
 ## Design and accessibility
 
-Monochrome matte surfaces, native CSS spheres, light and dark themes, self-hosted Manrope fonts, subtle transitions, keyboard navigation, a skip link, semantic page structure, reduced-motion support, and a responsive mobile menu. No analytics, tracking, remote fonts, or backend are required.
+A restrained academic layout with monochrome matte surfaces, a portrait and short biography, plain research and paper listings, light and dark themes, self-hosted Manrope fonts, subtle transitions, keyboard navigation, a skip link, semantic page structure, reduced-motion support, and a responsive mobile menu. No analytics, tracking, remote fonts, or backend are required.

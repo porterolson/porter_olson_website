@@ -1,8 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Icon from '../components/Icon.astro';
-import Spheres from '../components/Spheres.astro';
 import { profile } from '../data/profile';
 const socials = [['GitHub', profile.github], ['Google Scholar', profile.scholar], ['ORCID', profile.orcid], ['LinkedIn', profile.linkedin]].filter(([,url]) => url);
 ---
-<Layout title="Contact"><div id="top"></div><section class="shell page-heading"><p class="eyebrow">LET’S CONNECT</p><h1>Start a conversation<span class="muted-period">.</span></h1><p>Academic connections, shared interests, and possibilities ahead.</p></section><section class="shell contact-layout content-section"><div><h2>Find me here.</h2><p class="contact-intro">You can find my work and connect with me through the links below.</p>{profile.email ? <a class="contact-email" href={`mailto:${profile.email}`}><span><span class="eyebrow">EMAIL</span>{profile.email}</span><Icon name="external" /></a> : <p class="contact-note">An academic contact email will be added soon.</p>}<div class="social-list">{socials.map(([label,url]) => <a href={url} target="_blank" rel="noopener noreferrer"><span>{label}</span><Icon name="external" /></a>)}</div>{profile.affiliation && <p class="small-copy mt-8">{profile.affiliation}{profile.location && ` · ${profile.location}`}</p>}</div><div class="contact-visual"><Spheres compact /></div></section></Layout>
+<Layout title="Contact">
+  <div id="top"></div>
+  <section class="shell page-heading"><h1>Contact</h1></section>
+  <section class="shell content-section contact-details">
+    <p>{profile.name}</p><p>Finance department</p><p>NYU Stern School of Business</p>
+    {profile.location && <p>{profile.location}</p>}
+    {profile.email && <p class="contact-address"><a href={`mailto:${profile.email}`}>{profile.email}</a></p>}
+    <div class="academic-links">{socials.map(([label,url]) => <a href={url} target="_blank" rel="noopener noreferrer">{label}</a>)}</div>
+  </section>
+</Layout>

@@ -13,7 +13,7 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/porter-olson/',
   cvFile: '',
   portrait: 'images/porter-olson.jpg',
-  introduction: 'I’m a predoc in Finance at NYU Stern, preparing for doctoral study in economics and finance. My interests connect empirical questions, financial markets, and the methods we use to understand them.',
+  introduction: 'I am a predoc in the Finance department at NYU Stern. I am preparing to apply to PhD programs in economics and finance.',
   bio: [
     'I’m a predoc in the Finance department at NYU Stern. I’m preparing to apply to PhD programs in economics and finance, with interests in econometrics, causal inference, asset pricing, and corporate finance.',
     'My background is in economics at Brigham Young University, with minors in mathematics and Chinese. My research experience spans empirical economics, quantitative investment research, and machine learning.',

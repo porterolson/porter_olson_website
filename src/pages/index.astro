@@ -1,35 +1,42 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Spheres from '../components/Spheres.astro';
-import Icon from '../components/Icon.astro';
-import { profile, research, updates } from '../data/profile';
-import { local } from '../lib/paths';
+import { profile, education, publications, updates } from '../data/profile';
+import { local, resolveLink } from '../lib/paths';
 ---
 <Layout>
   <div id="top"></div>
-  <section class="shell hero">
-    <div class="hero-copy">
-      <p class="eyebrow"><span class="status-dot"></span> {profile.role}</p>
-      <h1>Porter<br />Olson<span class="muted-period">.</span></h1>
-      <p class="hero-field">Economics, finance & the questions ahead.</p>
-      <p class="hero-intro">{profile.introduction}</p>
-      <div class="flex flex-wrap items-center gap-3 mt-8"><a class="button button-dark" href={local('research/')}>Explore my research <Icon size={18} /></a><a class="button button-quiet" href={local('about/')}>A little about me <Icon name="external" size={17} /></a></div>
+  <section class="shell academic-intro">
+    <div class="academic-bio">
+      <h1>{profile.name}</h1>
+      <p class="academic-role">{profile.role}</p>
+      <p>{profile.introduction}</p>
+      <p>Previously, I studied economics at Brigham Young University, with minors in mathematics and Chinese. My research experience includes empirical economics, asset pricing, and machine learning.</p>
+      <div class="academic-links">
+        {profile.email && <a href={`mailto:${profile.email}`}>Email</a>}
+        <a href={local('cv/')}>CV</a>
+        <a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        {profile.linkedin && <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
+      </div>
     </div>
-    <Spheres />
-    <div class="hero-bottom"><span>PORTER OLSON <span class="divider-slash">/</span> ACADEMIC PORTFOLIO</span><a href="#about">Take a look around <span>↓</span></a></div>
+    {profile.portrait && <img class="home-portrait" src={local(profile.portrait)} alt={profile.name} width="800" height="800" />}
   </section>
-  <section id="about" class="shell section-block intro-section">
-    <div><p class="eyebrow section-number">01 / INTRODUCTION</p><h2>A person behind<br />the questions.</h2></div>
-    <div class="intro-copy"><p>{profile.bio[0]}</p>{profile.affiliation && <p class="small-copy">Currently at {profile.affiliation}.</p>}<a class="text-link" href={local('about/')}>More about my background <Icon size={18} /></a></div>
+  <section class="shell academic-section">
+    <h2>Research interests</h2>
+    <div><ul class="interest-list">{profile.interests.map(interest => <li>{interest}</li>)}</ul><a class="text-link" href={local('research/')}>Research projects</a></div>
   </section>
-  <section class="shell section-block">
-    <div class="section-heading"><div><p class="eyebrow section-number">02 / EXPLORE THE WORK</p><h2>A closer look.</h2></div><p>Ideas, work, and the journey so far.</p></div>
-    <div class="explore-grid">
-      <a class="explore-card research-card" href={local('research/')}><span class="card-index">01</span><div class="mini-spheres" aria-hidden="true"><i></i><i></i><i></i></div><div><h3>Research <Icon name="external" /></h3><p>{research.length ? 'The questions I’m pursuing and the work behind them.' : 'A place for the questions and projects I’ll pursue.'}</p><span class="card-caption">INTERESTS & PROJECTS</span></div></a>
-      <a class="explore-card" href={local('publications/')}><span class="card-index">02</span><div class="paper-art" aria-hidden="true"><div><span></span><span></span><span></span><span></span></div></div><div><h3>Publications <Icon name="external" /></h3><p>Papers, preprints, and other scholarly contributions.</p><span class="card-caption">WRITING & CONTRIBUTIONS</span></div></a>
-      <a class="explore-card" href={local('experience/')}><span class="card-index">03</span><div class="steps-art" aria-hidden="true"><i></i><i></i><i></i></div><div><h3>Experience <Icon name="external" /></h3><p>Research, teaching, and service along the way.</p><span class="card-caption">LEARNING & COMMUNITY</span></div></a>
-    </div>
-  </section>
-  {updates.length > 0 && <section class="shell section-block"><div class="section-heading"><div><p class="eyebrow section-number">03 / RECENTLY</p><h2>Notes along the way.</h2></div></div><div class="entry-list">{updates.map(update => <article class="update-entry"><time datetime={update.date}>{new Date(`${update.date}T12:00:00`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</time><p>{update.url ? <a href={update.url}>{update.text} ↗</a> : update.text}</p></article>)}</div></section>}
-  <section class="shell connect-section"><div class="connect-panel"><div><p class="eyebrow">THE NEXT CHAPTER</p><h2>Good research starts<br />with a conversation.</h2><p>For academic connections and future opportunities.</p></div><a class="button button-light" href={local('contact/')}>Get in touch <Icon name="external" size={18} /></a></div></section>
+  {publications.length > 0 && <section class="shell academic-section">
+    <h2>Papers</h2>
+    <div class="home-papers">{[...publications].sort((a,b) => b.year - a.year).map(paper => <article>
+      <h3>{paper.url ? <a href={resolveLink(paper.url)} target="_blank" rel="noopener noreferrer">{paper.title}</a> : paper.title}</h3>
+      <p>{paper.authors} · {paper.year}</p><p class="small-copy">{paper.type}</p><a class="text-link" href={local('publications/')}>Abstract and paper</a>
+    </article>)}</div>
+  </section>}
+  {education.length > 0 && <section class="shell academic-section">
+    <h2>Education</h2>
+    <div>{education.map(item => <article class="home-education"><h3>{item.degree}</h3><p>{item.institution}, {item.period}</p></article>)}</div>
+  </section>}
+  {updates.length > 0 && <section class="shell academic-section">
+    <h2>News</h2>
+    <div>{updates.map(update => <article class="update-entry"><time datetime={update.date}>{new Date(`${update.date}T12:00:00`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</time><p>{update.url ? <a href={update.url}>{update.text}</a> : update.text}</p></article>)}</div>
+  </section>}
 </Layout>
