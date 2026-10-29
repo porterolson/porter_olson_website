@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-Open the URL printed by Astro, normally <http://127.0.0.1:4321/porter_olson_website/>.
+Open the URL printed by Astro, normally <http://127.0.0.1:4321/>.
 
 ```sh
 npm run build    # Astro type check and production build
@@ -38,11 +38,11 @@ Repository: <https://github.com/porterolson/porter_olson_website>
 
 The repository needs to be public for GitHub Pages on GitHub Free. Private repository Pages availability depends on your GitHub plan. Future pushes to `main` automatically update the site.
 
-The Astro config already uses `site: 'https://porterolson.github.io'` and `base: '/porter_olson_website'`. Do not upload the raw `src/` directory as a Pages branch; the workflow publishes the built `dist/` output.
+The Astro config uses `site: 'https://porterolson.xyz'` and `base: '/'` for the custom domain. To return to the default GitHub project URL, restore `site: 'https://porterolson.github.io'` and `base: '/porter_olson_website'`, and remove the custom domain in GitHub Pages settings. The workflow publishes the built `dist/` output.
 
 ## Your own domain
 
-Preferred domain: **porterolson.com**. A registry check on October 29, 2026 found no registration; availability must be confirmed by the registrar at purchase. Purchase is still pending. Keep the current GitHub Pages configuration until the domain is owned, then follow the steps below using `porterolson.com` in place of `example.com`.
+Current domain: **porterolson.xyz**, registered with **Spaceship**. GitHub Pages is configured for this domain. Use `porterolson.xyz` in place of `example.com` in the general instructions below. The DNS records are managed in Spaceship Advanced DNS; retain the four GitHub Pages A records and the `www` CNAME to `porterolson.github.io`.
 
 GitHub provides the default `github.io` address and hosting. Register your own domain separately with a domain registrar, then connect it to Pages. The following uses `example.com` as a placeholder, not a domain already owned or registered.
 
