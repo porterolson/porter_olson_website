@@ -1,0 +1,71 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '@fontsource-variable/manrope';
+import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+import { profile } from '../data/profile';
+import { local } from '../lib/paths';
+interface Props { title?: string; description?: string; }
+const { title, description = 'Porter Olson is a predoc in Finance at NYU Stern, with research interests in economics, finance, econometrics, and machine learning.' } = Astro.props;
+const pageTitle = title ? `${title} — ${profile.name}` : `${profile.name} — Academic portfolio`;
+const links = [ ['About', 'about'], ['Research', 'research'], ['Publications', 'publications'], ['Experience', 'experience'], ['CV', 'cv'] ];
+const active = (path: string) => Astro.url.pathname.replace(/\/$/, '') === local(path).replace(/\/$/, '');
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f5f5f3" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={local('favicon.svg')} />
+    <title>{pageTitle}</title>
+    <script is:inline>
+      function applyTheme() {
+        let preference;
+        try { preference = localStorage.getItem('theme'); } catch {}
+        const dark = preference === 'dark' || (!preference && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      }
+      applyTheme();
+      document.addEventListener('astro:after-swap', applyTheme);
+    </script>
+    <ClientRouter />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header shell">
+      <a class="wordmark" href={local()} aria-label={`${profile.name}, home`}><span class="monogram">{profile.initials}<span>.</span></span><span class="wordmark-name">{profile.name}</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation">{links.map(([label, path]) => <a href={local(`${path}/`)} aria-current={active(path) ? 'page' : undefined}>{label}</a>)}</nav>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" aria-label="Switch color theme"><span class="sun-icon"><Icon name="sun" size={18} /></span><span class="moon-icon"><Icon name="moon" size={18} /></span></button>
+        <a class="contact-link" href={local('contact/')} aria-current={active('contact') ? 'page' : undefined}>Let’s connect <Icon name="external" size={17} /></a>
+        <details class="mobile-menu"><summary aria-label="Navigation menu"><span></span><span></span></summary><nav aria-label="Mobile navigation"><a href={local()}>Home</a>{links.map(([label, path]) => <a href={local(`${path}/`)} aria-current={active(path) ? 'page' : undefined}>{label}</a>)}<a href={local('contact/')}>Contact</a></nav></details>
+      </div>
+    </header>
+    <main id="main" tabindex="-1"><slot /></main>
+    <footer class="shell site-footer"><a class="footer-name" href={local()}>{profile.name}<span>Academic portfolio</span></a><div class="footer-links"><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub <Icon name="external" size={14} /></a><a href={local('contact/')}>Contact <Icon name="external" size={14} /></a><a href="#top" aria-label="Back to top" class="back-top">↑</a></div><p>© {new Date().getFullYear()} {profile.name}</p></footer>
+    <script>
+      function setupThemeButton() {
+        const button = document.querySelector<HTMLButtonElement>('.theme-toggle');
+        const label = () => button?.setAttribute('aria-label', `Switch to ${document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'} theme`);
+        label();
+        button?.addEventListener('click', () => {
+          const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.theme = theme;
+          try { localStorage.setItem('theme', theme); } catch {}
+          label();
+        });
+        const menu = document.querySelector<HTMLDetailsElement>('.mobile-menu');
+        menu?.addEventListener('keydown', (event) => { if (event.key === 'Escape') { menu.open = false; menu.querySelector('summary')?.focus(); } });
+      }
+      document.addEventListener('astro:page-load', setupThemeButton);
+    </script>
+  </body>
+</html>

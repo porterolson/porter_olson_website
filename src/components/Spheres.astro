@@ -1,0 +1,12 @@
+---
+interface Props { compact?: boolean; }
+const { compact = false } = Astro.props;
+---
+<div class:list={['sphere-composition', { compact }]} aria-hidden="true">
+  <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+  <div class="sphere sphere-large"></div>
+  <div class="sphere sphere-medium"></div>
+  <div class="sphere sphere-small"></div>
+  <div class="sphere sphere-pearl"></div>
+  <span class="composition-caption">A little room for possibility.</span>
+</div>
