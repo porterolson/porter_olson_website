@@ -104,6 +104,11 @@ main { min-height: calc(100vh - 190px); }
 .button { display: inline-flex; gap: 12px; align-items: center; justify-content: center; padding: 9px 16px; border: 1px solid var(--line); border-radius: 6px; font-size: 12px; font-weight: 500; background: transparent; color: var(--ink); transition: background .2s; }
 .button:hover { background: var(--soft); }
 .cv-content { max-width: 950px; }
+.cv-document { padding-block: 22px 50px; }
+.cv-document-links { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; margin-bottom: 16px; color: var(--muted); font-size: 12px; }
+.cv-document-links a { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--line); }
+.cv-document-links a:hover { text-decoration-color: var(--ink); }
+.cv-pdf { display: block; width: 100%; height: 82vh; min-height: 640px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
 .cv-identity { margin-bottom: 35px; }
 .cv-identity h2 { font-size: 25px; letter-spacing: -.5px; }
 .cv-identity p, .cv-identity a { font-size: 13px; color: var(--muted); }
@@ -184,6 +189,7 @@ main { min-height: calc(100vh - 190px); }
   .timeline-entry h3 { font-size: 17px; }
   .heading-with-action { align-items: flex-start; flex-direction: column; gap: 18px; }
   .cv-section > h2 { font-size: 20px; }
+  .cv-pdf { height: 75vh; min-height: 480px; }
   .site-footer { gap: 15px; padding-block: 22px; }
   .footer-links { gap: 18px; }
   .update-entry { grid-template-columns: 1fr; gap: 5px; }

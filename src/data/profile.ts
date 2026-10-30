@@ -11,7 +11,8 @@ export const profile = {
   scholar: '',
   orcid: '',
   linkedin: 'https://www.linkedin.com/in/porter-olson/',
-  cvFile: '',
+  cvFile: 'files/porter-olson-cv.pdf',
+  cvUpdated: 'January 2026',
   portrait: 'images/porter-olson.jpg',
   introduction: 'I am a predoc in the Finance department at NYU Stern. I am preparing to apply to PhD programs in economics and finance.',
   bio: [
@@ -35,7 +36,7 @@ export type Publication = {
   authors: string;
   venue: string;
   year: number;
-  type: 'Article' | 'Working paper' | 'Preprint' | 'Conference' | 'Poster' | 'Thesis';
+  type: 'Article' | 'Working paper' | 'Preprint' | 'Conference' | 'Poster' | 'Thesis' | 'Undergraduate thesis';
   abstract?: string;
   url?: string;
   code?: string;
@@ -57,7 +58,7 @@ export const research: Research[] = [
   {
     title: 'ESG restrictions and their consequences',
     summary: 'With Owen Benner, I studied the financial and environmental outcomes associated with Texas’s ESG investment restrictions. The paper combines difference-in-differences, quantile regression, and synthetic control, with attention to uncertainty and the challenges of separating policy effects from pandemic-era shocks.',
-    status: 'Research paper · 2024',
+    status: 'Undergraduate thesis · 2024',
     tags: ['Policy evaluation', 'Empirical finance', 'Causal inference'],
     url: 'files/texas-esg-paper.pdf',
   },
@@ -78,9 +79,9 @@ export const publications: Publication[] = [
   {
     title: 'The Impact of Texas’ ESG Ban on Financial and Environmental Outcomes',
     authors: 'Porter Olson and Owen Benner',
-    venue: 'Research paper · December 2024',
+    venue: 'Brigham Young University · December 2024',
     year: 2024,
-    type: 'Working paper',
+    type: 'Undergraduate thesis',
     abstract: 'We examine Texas’s ESG investment restrictions using difference-in-differences, quantile regression, and synthetic control methods. The analysis considers economic indicators, environmental outcomes, and financial performance. Estimates suggest modest, heterogeneous effects, with substantial statistical uncertainty and identification challenges arising from pandemic-era disruptions.',
     url: 'files/texas-esg-paper.pdf',
   },

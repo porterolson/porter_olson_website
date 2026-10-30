@@ -20,11 +20,11 @@ npm run preview  # Serve the production build locally
 
 ## Update your content
 
-Edit **`src/data/profile.ts`**. It holds your bio, contact links, interests, education, research projects, scholarly work, experience, skills, awards, and optional news updates. Pages use the same data, so edits also update the web CV. Empty optional sections are hidden. Experience categories are `Research`, `Teaching`, and `Service`.
+Edit **`src/data/profile.ts`**. It holds your bio, contact links, interests, education, research projects, scholarly work, experience, skills, awards, and optional news updates. Empty optional sections are hidden. Experience categories are `Research`, `Teaching`, and `Service`. The CV page displays the supplied PDF directly rather than generating a CV from these fields.
 
-Put downloadable files in `public/files/` and images in `public/images/`. Set `profile.cvFile` to `files/porter-olson-cv.pdf` when an updated CV is ready. The current web CV can also be printed or saved as a PDF using its button. Leave optional social links blank until you have them. All internal links and files use the configured base path.
+Put downloadable files in `public/files/` and images in `public/images/`. The CV viewer and Download PDF button both use `public/files/porter-olson-cv.pdf`, configured through `profile.cvFile`. To update the CV, replace that PDF and update `profile.cvUpdated`. The download is the exact supplied file; it is not a printout of the webpage. An Open PDF link is available for browsers that do not support inline PDF viewing. Leave optional social links blank until you have them. All internal links and files use the configured base path.
 
-Content in this first version comes from the supplied January 2026 CV and ESG paper, plus the current NYU Stern Finance role and email supplied directly. The older PDF CV is intentionally not published as the current CV. Exact end dates for the Eastmond and Silver Fund roles should be updated when available; the site currently shows their start dates. Confirm degree details and the Winter 2026 teaching appointment before sharing the site with admissions committees. There are no invented publications, awards, research results, or service roles.
+Content comes from the supplied January 2026 CV and ESG paper, plus the current NYU Stern Finance role and email supplied directly. The CV page now embeds the supplied January 2026 PDF, which predates the NYU role; its date is shown beside the viewer. The Texas ESG paper is labeled Undergraduate thesis at the author’s request. Exact end dates for the Eastmond and Silver Fund roles should be updated when available; the site currently shows their start dates. Confirm degree details and the Winter 2026 teaching appointment before sharing the site with admissions committees.
 
 ## GitHub Pages: first deployment
 
